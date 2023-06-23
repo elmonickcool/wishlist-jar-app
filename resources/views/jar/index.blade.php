@@ -13,6 +13,12 @@
             </div>
         </div>
     </div>
+
+    @foreach($jar as $jars)
+    {{ $jars->jar_name }}
+    {{$jars->cost}}
+    <a class="btn btn-primary" href="{{ route('jar.edit',$jars->id) }}">Edit</a>
+    @endforeach
 </div>
 
 

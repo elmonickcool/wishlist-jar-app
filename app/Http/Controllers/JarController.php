@@ -30,7 +30,13 @@ class JarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'jar_name'=>'required',
+            'cost'=>'required',
+        ]);
+
+        Jar::create($request->all());
+        return redirect()->route('jar.index');
     }
 
     /**
@@ -38,7 +44,7 @@ class JarController extends Controller
      */
     public function show(Jar $jar)
     {
-        //
+        return view('jar.show',compact('jar'));
     }
 
     /**
