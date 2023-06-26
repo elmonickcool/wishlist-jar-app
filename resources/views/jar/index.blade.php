@@ -20,11 +20,16 @@
             <div class="card mb-3">
                 <div class="card-body">
                     <h5 class="card-title">{{ $jars->jar_name }}</h5>
-                    <p class="card-text">{{$jars->description}}</p>
-                    <p class="card-text">Cost: {{$jars->cost}}</p>
-                    <p class="card-text">Remaining:{{$jars->remaining}}</p>
-                    <a class="btn btn-primary" href="{{ route('jar.edit', $jars->id) }}">Edit</a>
-                    
+                    <p class="card-text">{{ $jars->description }}</p>
+                    <p class="card-text">Cost: {{ $jars->cost }}</p>
+                    <p class="card-text">Remaining: {{ $jars->remaining }}</p>
+
+                    @if ($jars->remaining == 0)
+                        <button class="btn btn-success">Buy</button>
+                    @else
+                        <a class="btn btn-primary{{ $jars->remaining == 0 ? ' disabled' : '' }}" href="{{ route('jar.edit', $jars->id) }}">Prioritize</a>
+                    @endif
+
                     <form action="{{ route('jar.destroy', $jars->id) }}" method="POST" class="d-inline">
                         @csrf
                         @method('DELETE')
