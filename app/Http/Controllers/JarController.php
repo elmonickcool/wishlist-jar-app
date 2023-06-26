@@ -32,6 +32,7 @@ class JarController extends Controller
     {
        $request->validate([
         'jar_name'=>'required',
+        'link'=>'required',
         'description'=>'required',
         'cost'=>'required',
        ]);
