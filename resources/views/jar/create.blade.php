@@ -30,6 +30,11 @@
         <label for="jar_name">Name:</label>
         <input type="text" name="jar_name" id="jar_name" class="form-control">
     </div>
+
+    <div class="form-group">
+        <label for="link">Link:</label>
+        <input type="text" name="link" id="link" class="form-control">
+    </div>
     
     <div class="form-group">
         <label for="description">Description:</label>

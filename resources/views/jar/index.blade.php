@@ -19,7 +19,9 @@
             @foreach($jar as $jars)
             <div class="card mb-3">
                 <div class="card-body">
+                <a href="{{$jars->link}}">
                     <h5 class="card-title">{{ $jars->jar_name }}</h5>
+                    </a>
                     <p class="card-text">{{ $jars->description }}</p>
                     <p class="card-text">Cost: {{ $jars->cost }}</p>
                     <p class="card-text">Remaining: {{ $jars->remaining }}</p>
