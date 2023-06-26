@@ -9,9 +9,10 @@
             <form action="{{ route('jar.update', $jar->id) }}" method="POST">
                 @csrf
                 @method('PUT')
+                Balance:{{$jar->savings}}
                 <div class="form-group">
                     <label for="savings">Savings</label>
-                    <input type="number" id="savings" name="savings" class="form-control" value="{{ $jar->savings }}">
+                    <input type="number" id="savings" name="savings" class="form-control" value="0">
                 </div>
                 <div class="form-group">
                     <label for="jar_name">Product to Buy</label>
