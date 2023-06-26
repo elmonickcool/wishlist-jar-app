@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Jar;
 use Illuminate\Http\Request;
 
-
 class JarController extends Controller
 {
     /**
@@ -13,8 +12,9 @@ class JarController extends Controller
      */
     public function index()
     {
-        $jar = Jar::all();
-        return view('jar.index', ['jar' => $jar]);
+        //
+        $jar = Jar::latest()->paginate(5);
+        return view('jar.index',compact('jar'))->with ('i',(request()->input('page',1)-1)*5);
     }
 
     /**
@@ -30,13 +30,13 @@ class JarController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'jar_name'=>'required',
-            'cost'=>'required',
-        ]);
+       $request->validate([
+        'jar_name'=>'required',
+        'cost'=>'required',
+       ]);
+       Jar::create($request->all());
 
-        Jar::create($request->all());
-        return redirect()->route('jar.index');
+       return redirect()->route('jar.index');
     }
 
     /**
@@ -52,22 +52,29 @@ class JarController extends Controller
      */
     public function edit(Jar $jar)
     {
-        //
+        return view('jar.edit',compact('jar'));
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Jar $jar)
-    {
-        //
-    }
+{
+    $request->validate([
+        'jar_name' => 'required',
+        'savings' => 'required',
+    ]);
 
+    $jar->update($request->all());
+
+    return redirect()->route('jar.index')->with('success', 'Jar updated successfully');
+}
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Jar $jar)
     {
-        //
+        $jar->delete();
+    return redirect()->route('jar.index');
     }
 }
