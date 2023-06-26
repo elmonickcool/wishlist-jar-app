@@ -32,6 +32,7 @@ class JarController extends Controller
     {
        $request->validate([
         'jar_name'=>'required',
+        'description'=>'required',
         'cost'=>'required',
        ]);
        Jar::create($request->all());
@@ -61,13 +62,14 @@ class JarController extends Controller
     public function update(Request $request, Jar $jar)
 {
     $request->validate([
-        'jar_name' => 'required',
-        'savings' => 'required',
+        'savings' => 'required|numeric',
     ]);
 
-    $jar->update($request->all());
+    $jar->savings += $request->input('savings', 0); // Add the new input value to the existing savings
 
-    return redirect()->route('jar.index')->with('success', 'Jar updated successfully');
+    $jar->save();
+
+    return redirect()->route('jar.index');
 }
     /**
      * Remove the specified resource from storage.
