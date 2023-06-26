@@ -80,4 +80,15 @@ class JarController extends Controller
         $jar->delete();
     return redirect()->route('jar.index');
     }
+
+    public function buy(Jar $jar)
+{
+    $jar->buy = true;
+    $jar->save();
+
+    // You can perform any additional actions here if needed
+
+    return redirect()->back()->with('success', 'You have successfully bought the jar.');
+}
+
 }
