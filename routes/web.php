@@ -20,3 +20,5 @@ Route::get('/', function () {
 });
 
 Route::resource('jar',JarController::class);
+
+Route::post('/jar/{jar}/buy', [JarController::class, 'buy'])->name('jar.buy');
