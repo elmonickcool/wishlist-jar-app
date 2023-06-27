@@ -13,8 +13,8 @@ class JarController extends Controller
     public function index()
     {
         //
-        $jar = Jar::latest()->paginate(5);
-        return view('jar.index',compact('jar'))->with ('i',(request()->input('page',1)-1)*5);
+        $jar = Jar::all();
+        return view('jar.index',compact('jar'));
     }
 
     /**
@@ -35,6 +35,7 @@ class JarController extends Controller
         'link'=>'required',
         'description'=>'required',
         'cost'=>'required',
+        'category' => 'required',
        ]);
        Jar::create($request->all());
 
@@ -63,9 +64,9 @@ class JarController extends Controller
     public function update(Request $request, Jar $jar)
 {
     $request->validate([
-        'savings' => 'required|numeric',
+        'savings' => ['required', 'regex:/^\d+(\.\d{1,2})?$/'],
     ]);
-
+    
     $jar->savings += $request->input('savings', 0); // Add the new input value to the existing savings
 
     $jar->save();
