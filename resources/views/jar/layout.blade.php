@@ -15,6 +15,5 @@
 <div class="container bg-white p-5 mt-5">
     @yield('content')
 </div>
-
 </body>
 </html>
