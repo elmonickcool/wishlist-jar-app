@@ -7,6 +7,7 @@
     <div class="col">
         <h2>📃Wishlist</h2>
     </div>
+    <p>Total Savings: {{ number_format($totalSavings, 2) }}</p>
     <div class="col text-end">
         <a class="btn btn-success" href="{{ route('jar.create') }}">Add Wishlist</a>
     </div>
