@@ -14,7 +14,8 @@ class JarController extends Controller
     {
         //
         $jar = Jar::all();
-        return view('jar.index',compact('jar'));
+        $totalSavings = Jar::sum('savings');
+        return view('jar.index', compact('jar', 'totalSavings'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
