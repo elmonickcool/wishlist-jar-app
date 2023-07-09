@@ -20,11 +20,8 @@
                         <label for="savings">Savings:</label>
                         <input type="text" id="savings" name="savings" class="form-control" value="{{ old('savings') }}" pattern="\d+(\.\d{1,2})?">
                     </div>
-                    <div class="form-group">
-                        <label for="jar_name">Product to Buy:</label>
-                        <input type="text" id="jar_name" class="form-control" value="{{ $jar->jar_name }}" readonly>
-                    </div>
-                    <div class="text-right">
+                    
+                    <div class="text-right mt-2">
                         <button type="submit" class="btn btn-primary">Update</button>
                         <a class="btn btn-secondary" href="{{ route('jar.index') }}">Back</a>
                     </div>

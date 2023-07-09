@@ -13,7 +13,7 @@ class JarController extends Controller
     public function index()
     {
         //
-        $jar = Jar::all();
+        $jar = Jar::orderBy('savings', 'desc')->get();
         $totalSavings = Jar::sum('savings');
         return view('jar.index', compact('jar', 'totalSavings'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
