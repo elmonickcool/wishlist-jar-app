@@ -30,18 +30,37 @@ class JarController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-       $request->validate([
-        'jar_name'=>'required',
-        'link'=>'required',
-        'description'=>'required',
-        'cost'=>'required',
+{
+    $request->validate([
+        'jar_name' => 'required',
+        'link' => 'required',
+        'description' => 'required',
+        'cost' => 'required',
         'category' => 'required',
-       ]);
-       Jar::create($request->all());
+        'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
 
-       return redirect()->route('jar.index');
+   
+
+    $jar = new Jar([
+        'jar_name' => $request->input('jar_name'),
+        'link' => $request->input('link'),
+        'description' => $request->input('description'),
+        'cost' => $request->input('cost'),
+        'category' => $request->input('category'),
+    ]);
+
+    if ($request->hasFile('image')) {
+        $image = $request->file('image');
+        $imageName = time() . '_' . $image->getClientOriginalName();
+        $image->move(public_path('images'), $imageName);
+        $jar->image = $imageName;
     }
+
+    $jar->save();
+
+    return redirect()->route('jar.index');
+}
 
     /**
      * Display the specified resource.

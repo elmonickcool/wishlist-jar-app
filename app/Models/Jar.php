@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Jar extends Model
 {
     use HasFactory;
-    protected $fillable = ['jar_name', 'cost', 'savings','description','link','category'];
+    protected $fillable = ['jar_name', 'cost', 'savings','description','link','category','image',];
     protected $attributes = [
         'savings' => 0.00,
     ];
