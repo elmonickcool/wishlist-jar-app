@@ -21,12 +21,17 @@
     </div>
 @endif
 
-<form action="{{ route('jar.store') }}" method="POST">
+<form action="{{ route('jar.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
 
     <div class="form-group">
         <label for="jar_name">Name:</label>
         <input type="text" name="jar_name" id="jar_name" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="image">Image:</label>
+        <input type="file" name="image" id="image" class="form-control">
     </div>
 
     <div class="form-group">
@@ -52,3 +57,4 @@
     <button type="submit" class="btn btn-primary mt-3">Submit</button>
 </form>
 @endsection
+

@@ -18,6 +18,11 @@
         @foreach($jar as $jars)
         <div class="card mb-3 mx-auto">
             <div class="card-body">
+            @if ($jars->image)
+                    <div>
+                        <img src="{{ asset('images/'.$jars->image) }}" alt="Jar Image" class="img-fluid">
+                    </div>
+                    @endif
                 <a href="{{$jars->link}}">
                     <h5 class="card-title">{{ $jars->jar_name }}</h5>
                 </a>
