@@ -14,7 +14,7 @@ class JarController extends Controller
     {
         //
         $jar = Jar::orderBy('savings', 'desc')->get();
-        $totalSavings = Jar::sum('savings');
+        $totalSavings = Jar::where('buy',0)->sum('savings');
         return view('jar.index', compact('jar', 'totalSavings'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
